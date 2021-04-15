@@ -1,1 +1,24 @@
-
+on chat:
+  if player has permission "server.staffchat":
+    if {%player%.staffchat.enabled} is true:
+      loop all players:
+        if loop-player has permission "server.staffchat":
+          cancel event
+          send "[SC] %display name%: %message%"
+command /staffchat:
+  permission: server.staffchat
+  trigger:
+    if {%player%.staffchat.enabled} is true:
+      send "Disabled staff chat!"
+      set {%player%.staffchat.enabled} to false
+    else:
+      send "Enabled staff chat!"
+      set {%player%.staffchat.enabled} to true
+command /sc:
+  permission: server.staffchat
+  trigger:
+    if {%player%.staffchat.enabled} is true:
+      loop all players:
+        if loop-player has permission "server.staffchat":
+          cancel event
+          send "[SC] %display name%: %message%"
